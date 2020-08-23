@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 1790740189}
   m_Layer: 0
   m_Name: Rocket
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,12 +140,12 @@ Rigidbody:
   m_GameObject: {fileID: 653133753345278942}
   serializedVersion: 2
   m_Mass: 6
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 24
   m_CollisionDetection: 0
 --- !u!82 &5556542913404385716
 AudioSource:
@@ -158,11 +158,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0c9085c5bcced3c408b1cbb0655711a0, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.394
   m_Pitch: 1.27
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -255,8 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0e098564f44b54591dd560299a5236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 18
-  turnSpeed: 15
+  speed: 35.17
+  turnSpeed: 45
 --- !u!1 &653133753559184410
 GameObject:
   m_ObjectHideFlags: 0

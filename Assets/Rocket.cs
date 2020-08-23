@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-    public float speed = 18;
-    public float turnSpeed = 15;
+    public float speed = 18f;
+    public float turnSpeed = 15f;
     Rigidbody rb;
     AudioSource audioSource;
 
@@ -17,10 +17,12 @@ public class Rocket : MonoBehaviour
 
     void Update()
     {
-        ProcessInput();
+        Thrust();
+
+        Rotate();
     }
 
-    void ProcessInput()
+    private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))
         {
@@ -34,15 +36,37 @@ public class Rocket : MonoBehaviour
         {
             audioSource.Stop();
         }
+    }
+
+    void OnCollisionEnter(Collision enterCollision)
+    {
+        print("Collision");
+
+        if (enterCollision.gameObject.CompareTag("Finish"))
+        {
+            print("You Win!");
+        }
+        else if(enterCollision.gameObject.CompareTag("Obstacle"))
+        {
+            print("You lost your fUeL LmAO niCe");
+        }
+    }
+
+    private void Rotate()
+    {
 
         if (Input.GetKey(KeyCode.A))
         {
+            rb.freezeRotation = true;
             transform.Rotate(Vector3.forward, turnSpeed * Time.deltaTime);
         }
 
-        if(Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
+            rb.freezeRotation = true;
             transform.Rotate(-Vector3.forward, turnSpeed * Time.deltaTime);
         }
+
+        rb.freezeRotation = false;
     }
 }

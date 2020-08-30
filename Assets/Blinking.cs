@@ -6,7 +6,7 @@ using UnityEngine.Assertions.Must;
 public class Blinking : MonoBehaviour
 {
     public bool blink = true;
-    public float delay = 1;
+    float delay = 1;
     bool isBlinking;
     Light light;
 
@@ -31,9 +31,16 @@ public class Blinking : MonoBehaviour
 
     IEnumerator Blink()
     {
+        isBlinking = true;
+
+        delay = Random.Range(.1f, .3f);
+        yield return new WaitForSeconds(delay);
         light.enabled = false;
+
+        delay = Random.Range(.1f, .3f);
         yield return new WaitForSeconds(delay);
         light.enabled = true;
-        yield return new WaitForSeconds(delay);
+
+        isBlinking = false;
     }
 }

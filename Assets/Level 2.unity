@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -543,18 +543,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1790740188, guid: a2c795d59682050438d7c0fedc020514, type: 3}
-      propertyPath: m_Mass
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1790740189, guid: a2c795d59682050438d7c0fedc020514, type: 3}
-      propertyPath: turnSpeed
-      value: 130
-      objectReference: {fileID: 0}
-    - target: {fileID: 1790740189, guid: a2c795d59682050438d7c0fedc020514, type: 3}
-      propertyPath: speed
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 653133753345278942, guid: a2c795d59682050438d7c0fedc020514,
         type: 3}
       propertyPath: m_Name

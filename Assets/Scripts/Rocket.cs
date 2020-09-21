@@ -4,10 +4,12 @@ using System.Security;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[DisallowMultipleComponent]
 public class Rocket : MonoBehaviour
 {
     public float speed = 18f;
     public float turnSpeed = 15f;
+    public float levelLoadDelay = 1f;
     Rigidbody rb;
     AudioSource audioSource;
 
@@ -36,20 +38,19 @@ public class Rocket : MonoBehaviour
 
     void Update()
     {
-        if (state != State.Dead)
+        if (state == State.Alive)
         {
             Thrust();
 
             Rotate();
         }
-
     }
 
     private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up * speed);
+            rb.AddRelativeForce(Vector3.up * speed * 100 * Time.deltaTime);
             if (!audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(mainEngine);
@@ -109,7 +110,7 @@ public class Rocket : MonoBehaviour
         audioSource.PlayOneShot(death);
         deathParticles.Play();
         print("You died XDDD");
-        Invoke("ReloadLevel", 1f);
+        Invoke("ReloadLevel", levelLoadDelay);
     }
 
     void LevelFinished()
@@ -118,7 +119,7 @@ public class Rocket : MonoBehaviour
         audioSource.PlayOneShot(win);
         winParticles.Play();
         print("You Win!");
-        Invoke("LoadNextScene", 1f);
+        Invoke("LoadNextScene", levelLoadDelay);
     }
 
     void LoadNextScene()

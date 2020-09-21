@@ -14,6 +14,7 @@ public class Blinking : MonoBehaviour
     {
         light = GetComponent<Light>();
     }
+
     void Update()
     {
         if (blink)

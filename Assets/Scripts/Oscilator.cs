@@ -25,10 +25,11 @@ public class Oscilator : MonoBehaviour
         if (period <= Mathf.Epsilon)
             return;
 
-        float cycles = Time.time / period;
-        sinWave = Mathf.Sin(cycles + tau);  // goes from -1 to 1
-
         Vector3 offset = sinWave * maxOffset;
         transform.position = startingPos + offset;
+
+        float cycles = Time.time / period;
+        sinWave = Mathf.Sin(cycles + tau);  // goes from -1 to 1
+  
     }
 }

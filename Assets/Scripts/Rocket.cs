@@ -10,14 +10,15 @@ public class Rocket : MonoBehaviour
     public float speed = 18f;
     public float turnSpeed = 15f;
     public float levelLoadDelay = 1f;
-    public bool developerMode = true;
     Rigidbody rb;
     AudioSource audioSource;
+
+    public bool collisionsEnabled = true;
 
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip win;
     [SerializeField] AudioClip death;
-    
+
     [SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem winParticles;
     [SerializeField] ParticleSystem deathParticles;
@@ -46,11 +47,14 @@ public class Rocket : MonoBehaviour
             Rotate();
         }
 
-        if(developerMode)
+        if (Debug.isDebugBuild)
         {
             DeveloperKeys();
         }
     }
+
+
+    #region Movement
 
     private void Thrust()
     {
@@ -89,34 +93,64 @@ public class Rocket : MonoBehaviour
         rb.freezeRotation = false;
     }
 
+
+    #endregion Movement
+
+
     void DeveloperKeys()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L))    // insta przejście do kolejnego levela
         {
-            // Load next level
+            print("Level Skipped");
+            LoadNextScene();
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))    // wyłączenie kolizji
+        {         
+            ToggleColiisions();
         }
     }
 
+    #region Collision
+
     void OnCollisionEnter(Collision enterCollision)
     {
-        if (state != State.Alive)
+        if (state != State.Alive || !collisionsEnabled)
             return;
-        
+
         string collisionTag = enterCollision.gameObject.tag;
 
         if (collisionTag == "Finish")
         {
             LevelFinished();
         }
-        else if(collisionTag == "Obstacle")
+        else if (collisionTag == "Obstacle")
         {
             print("You lost your fUeL LmAO niCe");
         }
-        else if(collisionTag == "Deadly")
+        else if (collisionTag == "Deadly")
         {
             Death();
         }
     }
+
+    void ToggleColiisions()
+    {
+        Collider[] childrenColiders = GetComponentsInChildren<Collider>();
+
+        foreach(Collider collider in childrenColiders)
+        {
+            collider.enabled = !collider.enabled;
+        }
+
+        collisionsEnabled = !collisionsEnabled;      //Prosty przełącznik
+
+        if (collisionsEnabled)
+            print("Collisions Enabled");      
+        else
+            print("Collisions Disabled");
+    }
+
 
     void Death()
     {
@@ -126,6 +160,10 @@ public class Rocket : MonoBehaviour
         print("You died XDDD");
         Invoke("ReloadLevel", levelLoadDelay);
     }
+
+    #endregion Collision
+
+    #region Level Loading
 
     void LevelFinished()
     {
@@ -157,5 +195,6 @@ public class Rocket : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    #endregion Level Loading
 
 }

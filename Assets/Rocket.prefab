@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 653133752793529477}
   m_Layer: 0
   m_Name: Rocket Body
-  m_TagString: Untagged
+  m_TagString: RocketPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -354,6 +354,8 @@ MonoBehaviour:
   speed: 150
   turnSpeed: 130
   levelLoadDelay: 1
+  developerMode: 1
+  collisionsEnabled: 1
   mainEngine: {fileID: 8300000, guid: 69c017bbdbbe5cd499cfb6cb20e979bb, type: 3}
   win: {fileID: 8300000, guid: 9c2460e54bf1af14b92706b3cef60fce, type: 3}
   death: {fileID: 8300000, guid: e8f761a2c3788c043915f33c51b9c471, type: 3}
@@ -374,7 +376,7 @@ GameObject:
   - component: {fileID: 653133753559184411}
   m_Layer: 0
   m_Name: Rocket Booster (1)
-  m_TagString: Untagged
+  m_TagString: RocketPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -468,7 +470,7 @@ GameObject:
   - component: {fileID: 653133754204767270}
   m_Layer: 0
   m_Name: Rocket Booster (0)
-  m_TagString: Untagged
+  m_TagString: RocketPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -562,7 +564,7 @@ GameObject:
   - component: {fileID: 653133754529393558}
   m_Layer: 0
   m_Name: Nose Cone
-  m_TagString: Untagged
+  m_TagString: RocketPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

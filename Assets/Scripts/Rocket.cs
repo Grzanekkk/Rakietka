@@ -10,6 +10,7 @@ public class Rocket : MonoBehaviour
     public float speed = 18f;
     public float turnSpeed = 15f;
     public float levelLoadDelay = 1f;
+    public bool developerMode = true;
     Rigidbody rb;
     AudioSource audioSource;
 
@@ -43,6 +44,11 @@ public class Rocket : MonoBehaviour
             Thrust();
 
             Rotate();
+        }
+
+        if(developerMode)
+        {
+            DeveloperKeys();
         }
     }
 
@@ -81,6 +87,14 @@ public class Rocket : MonoBehaviour
         }
 
         rb.freezeRotation = false;
+    }
+
+    void DeveloperKeys()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            // Load next level
+        }
     }
 
     void OnCollisionEnter(Collision enterCollision)

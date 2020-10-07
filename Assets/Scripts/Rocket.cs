@@ -174,20 +174,22 @@ public class Rocket : MonoBehaviour
         Invoke("LoadNextScene", levelLoadDelay);
     }
 
-    int nextScene = 0;
+    int nextSceneIndex = 0;
 
     void LoadNextScene()
     {
-        if (nextScene >= SceneManager.sceneCountInBuildSettings)
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        if (currentSceneIndex >= SceneManager.sceneCountInBuildSettings - 1)
         {
-            nextScene = 0;
+            nextSceneIndex = 0;
         }
         else
         {
-            nextScene++;
+            nextSceneIndex = currentSceneIndex + 1;
         }
 
-        SceneManager.LoadScene(nextScene);
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     void ReloadLevel()
